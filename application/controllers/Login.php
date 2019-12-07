@@ -14,7 +14,9 @@ class Login extends CI_Controller {
 		{
             redirect('dashboard');
 		}else{
-            $this->load->view('login');	
+            $this->load->view('template/index/header');
+            $this->load->view('login');
+            $this->load->view('template/index/footer');
         }	
 	}
 	
@@ -46,8 +48,12 @@ class Login extends CI_Controller {
                     $this->session->set_userdata($data_session);
                     redirect('dashboard');
                     
+                }elseif($row->level=='petugas'){
+                    $this->load->view('petugas/v_dashboard_petugas');
+                }elseif($row->level=='user'){
+                    $this->load->view('user/v_dashboard_user');
                 }else{
-                    redirect('irr');
+                    redirrect('irr');
                 }
             }else{
                 redirect('irr');

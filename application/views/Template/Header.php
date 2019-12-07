@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <link rel="icon" href="<?=base_url('assets/index/images/logo.png')?>">
   <title>SIMPARK</title>
 
   <!-- Font Awesome Icons -->

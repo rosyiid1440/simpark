@@ -49,4 +49,22 @@ class Area extends CI_Model{
         $this->db->delete('area', array('id_area' => $id));
     }
 
+    function getareamobil(){
+        $query = $this->db->get_where('area',['jenis'=>'Mobil'])->result_array();
+        return $query; 
+    }
+
+    function getareamotor(){
+        $query = $this->db->get_where('area',['jenis'=>'Motor'])->result_array();
+        return $query; 
+    }
+
+    function getall()
+    {
+        $this->db->select("*");
+        $this->db->from("area");
+        $query = $this->db->get();        
+        return $query->result_array();
+    }
+
 }

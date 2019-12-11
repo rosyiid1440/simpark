@@ -6,7 +6,7 @@ class Users extends CI_Controller {
 	public function __construct(){
         parent::__construct();	
         $this->load->model('User');
-        if($this->session->userdata('login') != TRUE){
+        if($this->session->userdata('level') != 'admin'){
 			redirect(base_url("irr"));
 		}		
     }

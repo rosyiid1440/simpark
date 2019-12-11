@@ -49,9 +49,23 @@ class Login extends CI_Controller {
                     redirect('dashboard');
                     
                 }elseif($row->level=='petugas'){
-                    $this->load->view('petugas/v_dashboard_petugas');
+                    $data_session = array(
+                        'username' => $row->username,
+                        'level' => $row->level,
+                        'login' => TRUE
+                        );
+                    
+                    $this->session->set_userdata($data_session);
+                    redirect('dashboard');
                 }elseif($row->level=='user'){
-                    $this->load->view('user/v_dashboard_user');
+                    $data_session = array(
+                        'username' => $row->username,
+                        'level' => $row->level,
+                        'login' => TRUE
+                        );
+                    
+                    $this->session->set_userdata($data_session);
+                    redirect('dashboard');
                 }else{
                     redirrect('irr');
                 }

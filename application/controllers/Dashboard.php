@@ -9,24 +9,29 @@ class Dashboard extends CI_Controller {
         $this->load->model('Area');
         $this->load->model('Parkir');
         if($this->session->userdata('login') != TRUE){
-			redirect(base_url("irr"));
-		}		
+            redirect(base_url("irr"));
+		}
     }
 
     public function index()
     {
-        $area = 
-        [
-            'area' => $this->Area->getall(),
-            'parkir' => $this->Parkir->get()
-        ];
-        $this->load->view('template/header');
-        $this->load->view('template/sidebar');
-        $this->load->view('admin/dashboard',$area);
-        $this->load->view('template/footer');
-
-        // $area = $this->Parkir->get();
-        // echo json_encode( $area );
+        if($this->session->userdata('level') == 'admin'){
+            $area = 
+            [
+                'area' => $this->Area->getall(),
+                'parkir' => $this->Parkir->get()
+            ];
+            $this->load->view('template/header');
+            $this->load->view('template/sidebar');
+            $this->load->view('admin/dashboard',$area);
+            $this->load->view('template/footer');
+        }elseif($this->session->userdata('level') == 'petugas'){
+            echo 'petugas';
+        }elseif($this->session->userdata('level') == 'user'){
+            echo 'user';
+        }else{
+            redirect(base_url("irr"));
+        }
     }
 
 }

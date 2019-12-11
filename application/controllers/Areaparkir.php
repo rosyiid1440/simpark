@@ -6,8 +6,8 @@ class Areaparkir extends CI_Controller {
 	public function __construct(){
         parent::__construct();	
         $this->load->model('Area');
-        if($this->session->userdata('login') != TRUE){
-			redirect(base_url("irr"));
+        if($this->session->userdata('level') != 'admin'){
+			redirect(base_url("dashboard"));
 		}		
     }
 

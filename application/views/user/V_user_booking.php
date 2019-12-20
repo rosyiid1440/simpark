@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark">Booking</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <a href="<?=base_url('dashboard/pemarkir/kendaraan/tambah')?>"><button class="btn btn-primary mb-3">(+) Tambah Kendaraan</button></a>
+                      <a href="<?=base_url('dashboard/pemarkir/booking/tambah')?>"><button class="btn btn-primary mb-3">(+) Booking Parkir</button></a>
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                                 <div class="col-sm-12">
@@ -41,27 +41,42 @@
                                                 <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 169.35px;" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">#</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 194.233px;" aria-label="Platform(s): activate to sort column ascending">Nomer Polisi</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 194.233px;" aria-label="Platform(s): activate to sort column ascending">Jenis Kendaraan</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 194.233px;" aria-label="Platform(s): activate to sort column ascending">Type</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 219.55px;" aria-label="Browser: activate to sort column ascending">Aksi</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 194.233px;" aria-label="Platform(s): activate to sort column ascending">Area</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 194.233px;" aria-label="Platform(s): activate to sort column ascending">Tanggal</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" style="width: 219.55px;" aria-label="Browser: activate to sort column ascending">Status</th>
                                               </tr>
                                         </thead>
                                         <tbody id="isi">
                                             <?php 
                                             $i = 0;
-                                            foreach ($kendaraan as $kendaraan => $value):
+                                            foreach ($booking as $booking => $value):
                                                 $i++;
-                                                $id = $value['id_kendaraan'];
+                                                $id = $value['id'];
                                                 $nopol = $value['nopol'];
                                                 $jenis_kendaraan = $value['jenis_kendaraan'];
-                                                $type = $value['type'];
+                                                $area = $value['nama_area'];
+                                                $tanggal = $value['tanggal']
                                             ?>
                                             <tr role="row" class="odd">
                                                 <td class="sorting_1"><?=$i?></td>
                                                 <td><?=$nopol?></td>
                                                 <td><?=$jenis_kendaraan?></td>
-                                                <td><?=$type?></td>
+                                                <td><?=$area?></td>
+                                                <td><?=$tanggal?></td>
                                                 <td>
-                                                  <a href="<?=base_url('dashboard/pemarkir/kendaraan/delete/'.$id)?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                                  <?php
+                                                  $tgl_sekarang=date("Y-m-d H:i:s");//tanggal sekarang
+                                                  $tgl_mulai=$tanggal;// tanggal launching aplikasi
+                                                  $jangka_waktu = strtotime('+5 minutes', strtotime($tgl_mulai));// jangka waktu + 365 hari
+                                                  $tgl_exp=date("Y-m-d H:i:s",$jangka_waktu);//tanggal expired
+                                                  if ($tgl_sekarang >=$tgl_exp )
+                                                  {
+                                                  echo"Booking sudah tidak berlaku";
+                                                  }
+                                                  else
+                                                  {
+                                                  echo "Booking masih berlaku";
+                                                  }?>
                                                 </td>
                                             </tr>
                                             <?php endforeach;?>

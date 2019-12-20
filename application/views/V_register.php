@@ -7,7 +7,6 @@
    
       <div class="d-flex justify-content-center">
         <a href="<?=base_url('registeruser')?>" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Regristrasi User</a>
-        <a href="<?=base_url('registerkendaraan')?>" class="btn btn-secondary btn-lg active ml-3" role="button" aria-pressed="true">Regristrasi Kendaraan</a>
       </div>
   </div>
 </div>

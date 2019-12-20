@@ -49,8 +49,7 @@ class RegisterController extends CI_Controller {
 
             $iduser = $this->Register->create($username,$password,$level);
             $this->Register->createuser($nama,$alamat,$nohp,$iduser);
-            // redirect('dashboard');
-            echo "berhasil";
+            redirect('dashboard');
         }
 
     }

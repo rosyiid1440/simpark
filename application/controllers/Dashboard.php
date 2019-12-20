@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
         $this->load->model('User');		
         $this->load->model('Area');
         $this->load->model('Parkir');
+        $this->load->model('Login_user');
         if($this->session->userdata('login') != TRUE){
             redirect(base_url("irr"));
 		}
@@ -26,9 +27,23 @@ class Dashboard extends CI_Controller {
             $this->load->view('admin/dashboard',$area);
             $this->load->view('template/footer');
         }elseif($this->session->userdata('level') == 'petugas'){
-            echo 'petugas';
+            $area = 
+            [
+                'area' => $this->Area->getall(),
+                'parkir' => $this->Parkir->get()
+            ];
+            $this->load->view('template/header');
+            $this->load->view('template/sidebar2');
+            $this->load->view('petugas/V_dashboard_petugas',$area);
+            $this->load->view('template/footer');
         }elseif($this->session->userdata('level') == 'user'){
-            echo 'user';
+            $iduser = $this->session->userdata('iduser');
+            $kendaraan['kendaraan'] = $this->Login_user->getkendaraan($iduser);
+            
+            $this->load->view('template/header');
+            $this->load->view('template/sidebar1');
+            $this->load->view('user/V_dashboard_user',$kendaraan);
+            $this->load->view('template/footer');
         }else{
             redirect(base_url("irr"));
         }

@@ -89,5 +89,21 @@ $route['dashboard/user/editpemarkir/(:any)'] = 'Users/editpemarkir/$1';
 
 $route['dashboard/user/update/(:any)'] = 'Users/update/$1';
 $route['dashboard/user/hapus/(:any)'] = 'Users/hapus/$1';
+
+$route['dashboard/pemarkir/detail'] = 'Pemarkir/index';
+$route['dashboard/pemarkir/kendaraan/tambah'] = 'Pemarkir/createkendaraan';
+$route['dashboard/pemarkir/kendaraan/valid'] = 'Pemarkir/storekendaraan';
+$route['dashboard/pemarkir/kendaraan/delete/(:any)'] = 'Pemarkir/delete/$1';
+
+$route['dashboard/pemarkir/booking'] = 'Pemarkir/booking';
+$route['dashboard/pemarkir/booking/tambah'] = 'Pemarkir/createbooking';
+$route['dashboard/pemarkir/booking/valid'] = 'Pemarkir/storebooking';
+
+$route['dashboard/pemarkir/profile/update'] = 'Pemarkir/updateprofile';
+
+$route['dashboard/petugas/detail'] = 'Petugas/index';
+$route['dashboard/petugas/parkir'] = 'Petugas/indexparkir';
+$route['dashboard/petugas/profile/update'] = 'Petugas/updateprofile';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

@@ -40,6 +40,7 @@ class Login extends CI_Controller {
                 if($row->level=='admin'){
 
                     $data_session = array(
+                        'iduser' => $row->id_user,
                         'username' => $row->username,
                         'level' => $row->level,
                         'login' => TRUE
@@ -50,6 +51,7 @@ class Login extends CI_Controller {
                     
                 }elseif($row->level=='petugas'){
                     $data_session = array(
+                        'iduser' => $row->id_user,
                         'username' => $row->username,
                         'level' => $row->level,
                         'login' => TRUE
@@ -59,6 +61,7 @@ class Login extends CI_Controller {
                     redirect('dashboard');
                 }elseif($row->level=='user'){
                     $data_session = array(
+                        'iduser' => $row->id_user,
                         'username' => $row->username,
                         'level' => $row->level,
                         'login' => TRUE
